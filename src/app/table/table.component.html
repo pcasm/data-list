@@ -1,0 +1,40 @@
+<form>
+  <mat-form-field>
+    <mat-label>Filter by Name</mat-label>
+    <input matInput [formControl]="nameFilter" maxlength="30">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Filter by Country check severity</mat-label>
+    <mat-select [formControl]="countryCheckSeverityFilter">
+      <mat-option value="">All</mat-option>
+      <mat-option [value]="SeverityLevel.critical">Critical</mat-option>
+      <mat-option [value]="SeverityLevel.criticalAcknowledged">Critical Acknowledged</mat-option>
+      <mat-option [value]="SeverityLevel.warning">Warning</mat-option>
+      <mat-option [value]="SeverityLevel.ok">Ok</mat-option>
+      <mat-option [value]="SeverityLevel.unknown">Unknown</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<div class="mat-elevation-z5">
+<table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Created</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.created | date: 'd/M/yy, H:mm'}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="modified">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Modified</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.modified | date: 'd/M/yy, H:mm'}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="country_check_severity">
+    <mat-header-cell *matHeaderCellDef>Country Check Severity</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.country_check_severity}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>
