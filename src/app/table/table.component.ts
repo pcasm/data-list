@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import screenings from '../../assets/screenings.json';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {FormControl} from '@angular/forms';
-import {SeverityLevel} from '../models/models';
+import {Row, SeverityLevel} from '../models/models';
 
 @Component({
   selector: 'app-table',
@@ -19,11 +19,43 @@ export class TableComponent implements OnInit, AfterViewInit {
   filterValues = {name: '', country_check_severity: ''};
   SeverityLevel = SeverityLevel;
   reducedTableRows = [
-  'name',
-  'created',
-  'modified',
-  'country_check_severity',
+    'name',
+    'created',
+    'modified',
+    'country_check_severity',
   ];
+  allTableRows = [
+    'url',
+    'company_blacklists',
+    'port_blacklists',
+    'country_blacklists',
+    'ship_blacklists',
+    'id',
+    'created',
+    'modified',
+    'name',
+    'company_check_prior_months',
+    'company_check_prior_months_severity',
+    'company_check_severity',
+    'company_check_severity_technical_manager',
+    'company_check_severity_technical_manager_sdn',
+    'company_check_severity_technical_manager_generic',
+    'company_check_severity_group_beneficial_owner',
+    'company_check_severity_group_beneficial_owner_sdn',
+    'company_check_severity_group_beneficial_owner_generic',
+    'company_check_severity_ship_manager',
+    'company_check_severity_ship_manager_sdn',
+    'company_check_severity_ship_manager_generic',
+    'company_check_severity_operator',
+    'company_check_severity_operator_sdn',
+    'company_check_severity_operator_generic',
+    'company_check_severity_registered_owner',
+    'company_check_severity_registered_owner_sdn',
+    'company_check_severity_registered_owner_generic',
+    'country_check_severity'
+  ];
+  showingDetails = false;
+  selectedRow: Row;
 
   constructor() {
     this.dataSource.data = screenings.results;
@@ -61,6 +93,11 @@ export class TableComponent implements OnInit, AfterViewInit {
         && data.name.indexOf(searchTerms.name) !== -1;
     };
     return filterFunction;
+  }
+
+  showDetails(row: Row) {
+    this.selectedRow = row;
+    this.showingDetails = true;
   }
 
 }

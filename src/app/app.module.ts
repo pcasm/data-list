@@ -7,12 +7,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { TableComponent } from './table/table.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormatKeysPipe } from './pipes/format-keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TableComponent
+    TableComponent,
+    FormatKeysPipe
   ],
   imports: [
     BrowserModule,

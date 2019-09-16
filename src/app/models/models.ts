@@ -6,7 +6,7 @@ export enum SeverityLevel {
   critical = '90',
 }
 
-export interface Result {
+export interface Row {
   url: string;
   company_blacklists: string;
   port_blacklists: string;

@@ -10,3 +10,17 @@ mat-header-row {
 mat-row {
   width: 100%;
 }
+
+mat-cell {
+  cursor: pointer;
+}
+
+button {
+  margin: 1em;
+}
+
+ul {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  list-style-type: none;
+}
